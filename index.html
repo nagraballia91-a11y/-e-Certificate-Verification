@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>e-Certificate Verification</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #222;
+}
+
+/* Main Website */
+.website {
+    width: 96%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Header */
+.header {
+    height: 95px;
+    position: relative;
+    border-bottom: 1px solid #777;
+}
+
+.gov-title {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    color: #16447c;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.gov-symbol {
+    display: inline-block;
+    margin-right: 7px;
+    font-size: 21px;
+    color: #b18a00;
+}
+
+.top-links {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    color: #333;
+    font-size: 10px;
+}
+
+.top-links span {
+    margin-left: 7px;
+}
+
+.font-buttons {
+    position: absolute;
+    right: 0;
+    top: 27px;
+}
+
+.font-buttons button {
+    border: none;
+    background: white;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    background: linear-gradient(#63b5e7, #087bc0);
+    border: 1px solid #24658e;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-right: 1px solid rgba(255,255,255,0.35);
+    font-size: 11px;
+}
+
+.navbar a:hover {
+    background: #075f96;
+}
+
+/* Main Area */
+.main {
+    margin-top: 20px;
+    border: 1px solid #28618a;
+    padding: 4px;
+}
+
+/* Page Heading */
+.page-heading {
+    border: 1px solid #28618a;
+    background: linear-gradient(#e8f6ff, #c4e7fa);
+    color: #111;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+/* Blue Section */
+.section {
+    margin-top: 7px;
+    border: 1px solid #28618a;
+}
+
+.section-title {
+    background: linear-gradient(#6ab9e8, #1686c5);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-bottom: 1px solid #28618a;
+}
+
+/* Search Area */
+.search-area {
+    padding: 10px;
+}
+
+.search-row {
+    display: grid;
+    grid-template-columns: 150px 190px 150px 190px 60px;
+    align-items: center;
+    gap: 8px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    height: 25px;
+    border: 1px solid #999;
+    padding: 3px 6px;
+    background: white;
+    font-size: 11px;
+}
+
+button.go-btn {
+    height: 25px;
+    border: 1px solid #777;
+    background: linear-gradient(#aee1ff, #2388c3);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+button.go-btn:hover {
+    background: #086ca5;
+}
+
+.hint {
+    font-size: 9px;
+    color: #777;
+    text-align: center;
+    margin-top: 2px;
+}
+
+/* Certificate Information */
+.info-box {
+    padding: 10px;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table td {
+    border: 1px solid #b5b5b5;
+    padding: 7px 8px;
+    height: 30px;
+}
+
+.info-table td:first-child {
+    width: 125px;
+    font-weight: bold;
+    background: #f5f5f5;
+}
+
+.close-area {
+    text-align: center;
+    padding: 9px;
+}
+
+.close-btn {
+    background: linear-gradient(#82c8ed, #278bc2);
+    color: white;
+    border: 1px solid #777;
+    padding: 5px 17px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #086ca5;
+}
+
+/* Footer */
+.footer {
+    margin-top: 25px;
+    height: 35px;
+    background: linear-gradient(#70c0eb, #0875b3);
+    color: #111;
+    font-size: 9px;
+    border-top: 1px solid #24658e;
+    position: relative;
+}
+
+.footer-left {
+    position: absolute;
+    left: 7px;
+    top: 6px;
+}
+
+.footer-right {
+    position: absolute;
+    right: 7px;
+    top: 6px;
+}
+
+/* Mobile */
+@media(max-width: 700px) {
+
+    .website {
+        width: 98%;
+    }
+
+    .header {
+        height: 105px;
+    }
+
+    .gov-title {
+        top: 45px;
+        font-size: 12px;
+    }
+
+    .top-links {
+        font-size: 8px;
+    }
+
+    .navbar a {
+        padding: 6px 8px;
+        font-size: 9px;
+    }
+
+    .main {
+        margin-top: 10px;
+    }
+
+    .page-heading {
+        font-size: 15px;
+    }
+
+    .search-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .search-row label {
+        margin-top: 5px;
+    }
+
+    button.go-btn {
+        width: 70px;
+        margin-top: 8px;
+    }
+
+    .info-table td {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .info-table td:first-child {
+        width: 105px;
+    }
+
+    .footer {
+        height: 55px;
+    }
+
+    .footer-left,
+    .footer-right {
+        position: static;
+        padding: 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="website">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="gov-title">
+            <span class="gov-symbol">🏛</span>
+            Ministry of Skill Development And Entrepreneurship
+        </div>
+
+        <div class="top-links">
+            <span>+A</span>
+            <span>A</span>
+            <span>-A</span>
+            <span>Terms & Conditions</span>
+            <span>Privacy Policy</span>
+        </div>
+
+        <div class="font-buttons">
+            <button>🔊</button>
+            <button>Hindi</button>
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">ITI</a>
+        <a href="#">Trainee</a>
+        <a href="#">Verification</a>
+        <a href="#">Instructor</a>
+        <a href="#">Examiner</a>
+        <a href="#">Calendar</a>
+        <a href="#">CR</a>
+        <a href="#">Help</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Complaint Tool</a>
+    </div>
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="page-heading">
+            e-Certificate Verification
+        </div>
+
+
+        <!-- CERTIFICATE SEARCH -->
+        <div class="section">
+
+            <div class="section-title">
+                Enter e-Certificate Number
+            </div>
+
+            <div class="search-area">
+
+                <div class="search-row">
+
+                    <label>
+                        e-Certificate Number
+                    </label>
+
+                    <div>
+                        <input
+                            type="text"
+                            id="certificateNumber"
+                            placeholder="Enter Certificate Number"
+                        >
+
+                        <div class="hint">
+                            (Only Numbers Allowed)
+                        </div>
+                    </div>
+
+
+                    <label>
+                        Certificate Type
+                    </label>
+
+                    <select id="certificateType">
+                        <option value="">--select--</option>
+                        <option value="ITI">ITI Certificate</option>
+                        <option value="NCVT">NCVT Certificate</option>
+                        <option value="SCVT">SCVT Certificate</option>
+                    </select>
+
+
+                    <button class="go-btn" onclick="verifyCertificate()">
+                        Go
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CERTIFIED TRAINEE INFORMATION -->
+        <div class="section" id="resultSection">
+
+            <div class="section-title">
+                Certified Trainee Information
+            </div>
+
+            <div class="info-box">
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Trainee Name</td>
+                        <td id="traineeName">
+                            PRAVEEN KUMAR
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Father Name</td>
+                        <td id="fatherName">
+                            LALLAN PRASAD
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Institute</td>
+                        <td id="institute">
+                            PR09001191-Shubhshati Devi ITC - Ballia
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Institute Address</td>
+                        <td id="address">
+                            NAGRA BALLIA UTTAR PRADESH 221711
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Trade</td>
+                        <td id="trade">
+                            Electrician (NSQF)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Training Duration</td>
+                        <td id="duration">
+                            Aug-2018 To Jul-2020
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Certified</td>
+                        <td id="certified">
+                            Yes
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Certificate Issue Date</td>
+                        <td id="issueDate">
+                            07-Sep-2020
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="close-area">
+                <button class="close-btn" onclick="closeResult()">
+                    Close
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        <div class="footer-left">
+            © 2015 Ministry of Skill Development and Entrepreneurship, Government of India.<br>
+            Suggested Browsers: Internet Explorer, Chrome or Safari only.
+        </div>
+
+        <div class="footer-right">
+            Total Hits : 5,98,831 |
+            Yearly Hits : 3,97,749 |
+            Monthly Hits : 83,456
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function verifyCertificate() {
+
+    let number = document.getElementById("certificateNumber").value;
+    let type = document.getElementById("certificateType").value;
+
+    if (number === "") {
+        alert("Please enter e-Certificate Number");
+        return;
+    }
+
+    if (type === "") {
+        alert("Please select Certificate Type");
+        return;
+    }
+
+    // Demo result
+    document.getElementById("resultSection").style.display = "block";
+
+    alert("Certificate Verified Successfully");
+}
+
+
+function closeResult() {
+
+    document.getElementById("resultSection").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
